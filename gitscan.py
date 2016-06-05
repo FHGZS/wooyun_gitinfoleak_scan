@@ -34,6 +34,21 @@ def getHtmlurl(html):
 
 
 #q = raw_input ("pelase input the keyword(eg:username+password+mail):")
+import urllib
+import urllib2
+import bs4
+
+def search_github(query):
+    query = urllib.quote(query)
+    github_url = "https://github.com/search?o=desc&p=%s&q=%s&s=indexed&type=Code&utf8="%(str(0),query)        
+    header = {}
+    request = urllib2.Request(github_url,header=header)
+    response = urllib2.urlopen(request, timeout=30)
+    if response and response.getcode() == 200:
+        data = response.read()
+        soup = bs4.BeautifulSoup(data)
+
+
 
 
 def emails():    
